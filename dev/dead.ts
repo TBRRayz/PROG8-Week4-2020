@@ -5,6 +5,10 @@ class Dead implements Behavior {
         jibby.div.style.backgroundImage = "url('images/dead.png')"
     }
 
+    public onTimerFinished() {
+        
+    }
+
     public onEat() {
 
     }

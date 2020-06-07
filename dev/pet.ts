@@ -6,11 +6,11 @@ class Pet implements Behavior {
         jibby.happyness -= 0.015;
         console.log("you clicked on jibby!")
         jibby.div.style.backgroundImage = "url('images/happy.png')"
-        setTimeout(this.toIdle, 2000, jibby)
+        setTimeout(this.onTimerFinished, 2000, jibby)
         
     }
 
-    public toIdle (jibby : Jibby) : any {
+    public onTimerFinished(jibby: Jibby) {
         jibby.setBehavior(new Idle());
     }
 

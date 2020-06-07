@@ -6,11 +6,11 @@ class Wash implements Behavior {
         jibby.happyness -= 0.015;
         console.log("washing jibby!")
         jibby.div.style.backgroundImage = "url('images/washing.png')"
-        setTimeout(this.toIdle, 2000, jibby)
+        setTimeout(this.onTimerFinished, 2000, jibby)
         
     }
 
-    public toIdle (jibby : Jibby) : any {
+    public onTimerFinished(jibby: Jibby) {
         jibby.setBehavior(new Idle());
     }
 

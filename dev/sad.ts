@@ -9,6 +9,10 @@ class Sad implements Behavior {
     
     }
 
+    public onTimerFinished() {
+        
+    }
+
     public onEat(jibby : Jibby) {
         jibby.setBehavior(new Eat());
         jibby.food += 10;

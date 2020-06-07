@@ -8,6 +8,10 @@ class Idle implements Behavior {
         jibby.div.style.backgroundImage = "url('images/idle.png')"
     }
 
+    public onTimerFinished() {
+        
+    }
+
     public onEat(jibby : Jibby) {
         jibby.setBehavior(new Eat());
         jibby.food += 10;

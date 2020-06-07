@@ -1,10 +1,23 @@
 "use strict";
+var Behavior = (function () {
+    function Behavior() {
+    }
+    Behavior.prototype.performBehavior = function (jibby) {
+        setTimeout(this.onTimerFinished, 2000, jibby);
+    };
+    Behavior.prototype.onTimerFinished = function (jibby) {
+        jibby.setBehavior(new Idle());
+    };
+    return Behavior;
+}());
 var Dead = (function () {
     function Dead() {
     }
     Dead.prototype.performBehavior = function (jibby) {
         console.log("jibby is Dead!");
         jibby.div.style.backgroundImage = "url('images/dead.png')";
+    };
+    Dead.prototype.onTimerFinished = function () {
     };
     Dead.prototype.onEat = function () {
     };
@@ -23,6 +36,8 @@ var Dirty = (function () {
         jibby.happyness -= 0.015;
         console.log("jibby is dirty!");
         jibby.div.style.backgroundImage = "url('images/dirty.png')";
+    };
+    Dirty.prototype.onTimerFinished = function () {
     };
     Dirty.prototype.onEat = function (jibby) {
         jibby.setBehavior(new Eat());
@@ -48,9 +63,9 @@ var Eat = (function () {
         jibby.happyness -= 0.015;
         console.log("jibby is eating!");
         jibby.div.style.backgroundImage = "url('images/eating.gif')";
-        setTimeout(this.toIdle, 2000, jibby);
+        setTimeout(this.onTimerFinished, 2000, jibby);
     };
-    Eat.prototype.toIdle = function (jibby) {
+    Eat.prototype.onTimerFinished = function (jibby) {
         jibby.setBehavior(new Idle());
     };
     Eat.prototype.onEat = function () {
@@ -127,6 +142,8 @@ var Hunger = (function () {
         console.log("jibby is eating!");
         jibby.div.style.backgroundImage = "url('images/hungry.png')";
     };
+    Hunger.prototype.onTimerFinished = function () {
+    };
     Hunger.prototype.onEat = function (jibby) {
         jibby.setBehavior(new Eat());
         jibby.food += 10;
@@ -152,6 +169,8 @@ var Idle = (function () {
         console.log("jibby is Idle!");
         jibby.div.style.backgroundImage = "url('images/idle.png')";
     };
+    Idle.prototype.onTimerFinished = function () {
+    };
     Idle.prototype.onEat = function (jibby) {
         jibby.setBehavior(new Eat());
         jibby.food += 10;
@@ -176,9 +195,9 @@ var Pet = (function () {
         jibby.happyness -= 0.015;
         console.log("you clicked on jibby!");
         jibby.div.style.backgroundImage = "url('images/happy.png')";
-        setTimeout(this.toIdle, 2000, jibby);
+        setTimeout(this.onTimerFinished, 2000, jibby);
     };
-    Pet.prototype.toIdle = function (jibby) {
+    Pet.prototype.onTimerFinished = function (jibby) {
         jibby.setBehavior(new Idle());
     };
     Pet.prototype.onEat = function () {
@@ -198,6 +217,8 @@ var Sad = (function () {
         jibby.happyness -= 0.015;
         console.log("jibby is eating!");
         jibby.div.style.backgroundImage = "url('images/sad.png')";
+    };
+    Sad.prototype.onTimerFinished = function () {
     };
     Sad.prototype.onEat = function (jibby) {
         jibby.setBehavior(new Eat());
@@ -223,9 +244,9 @@ var Wash = (function () {
         jibby.happyness -= 0.015;
         console.log("washing jibby!");
         jibby.div.style.backgroundImage = "url('images/washing.png')";
-        setTimeout(this.toIdle, 2000, jibby);
+        setTimeout(this.onTimerFinished, 2000, jibby);
     };
-    Wash.prototype.toIdle = function (jibby) {
+    Wash.prototype.onTimerFinished = function (jibby) {
         jibby.setBehavior(new Idle());
     };
     Wash.prototype.onEat = function () {

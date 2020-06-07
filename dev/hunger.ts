@@ -8,6 +8,10 @@ class Hunger implements Behavior {
         jibby.div.style.backgroundImage = "url('images/hungry.png')"
     }
 
+    public onTimerFinished() {
+        
+    }
+
     public onEat(jibby : Jibby) {
         jibby.setBehavior(new Eat());
         jibby.food += 10;

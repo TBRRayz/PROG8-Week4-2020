@@ -6,13 +6,15 @@ class Eat implements Behavior {
         jibby.happyness -= 0.015;
         console.log("jibby is eating!")
         jibby.div.style.backgroundImage = "url('images/eating.gif')"
-        setTimeout(this.toIdle, 2000, jibby)
+        setTimeout(this.onTimerFinished, 2000, jibby)
         
     }
 
-    public toIdle (jibby : Jibby) : any {
+    public onTimerFinished(jibby: Jibby) {
         jibby.setBehavior(new Idle());
     }
+
+
 
     public onEat() {
 
