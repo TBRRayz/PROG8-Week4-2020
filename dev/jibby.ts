@@ -7,11 +7,18 @@ class Jibby {
     public div:HTMLElement
     public x:number
     public y:number
+
+    private behavior : Behavior;
+
+    public setBehavior(behavior : Behavior) {
+        this.behavior = behavior;
+    }
             
     constructor(parent:HTMLElement) {
         this.div = document.createElement("jibby")
         parent.appendChild(this.div)
 
+        this.behavior = new Idle();
         // start instellingen
         this.x = 0
         this.y = 220
@@ -22,40 +29,33 @@ class Jibby {
         // this.myBehavior = new Idle()
 
         // click listeners
-        this.div.addEventListener("click", () => this.onPet())
-        document.getElementsByTagName("foodbutton")[0].addEventListener("click", () => this.onEat())
-        document.getElementsByTagName("washbutton")[0].addEventListener("click", () => this.onWash())
+        this.div.addEventListener("click", () => this.behavior.onPet(this))
+        document.getElementsByTagName("foodbutton")[0].addEventListener("click", () => this.behavior.onEat(this))
+        document.getElementsByTagName("washbutton")[0].addEventListener("click", () => this.behavior.onWash(this))
         
     }
 
     public update():void {
         // hier het gedrag updaten
         //
-        
+        this.behavior.performBehavior(this);
         // dit moet in het gedrag staan
-        this.hygiene -= 0.01
-        this.food -= 0.02
-        this.happyness -= 0.015
-
+       
         // check of de waarden te laag zijn
+        if (this.food < 0 || this.hygiene < 0 || this.happyness < 0){
+            this.setBehavior(new Dead());
+        }
+        else if (this.food < 10) {
+            this.setBehavior(new Hunger());
+        } 
+        else if (this.hygiene < 10) {
+            this.setBehavior(new Dirty());
+        }
+        else if (this.happyness < 10) {
+            this.setBehavior(new Sad());
+        }
+        
         // 
     }
-
-
-    private onPet():void {
-        console.log("you clicked on jibby!")
-        this.div.style.backgroundImage = "url('images/happy.png')"
-    }
-
-    private onWash():void {
-        console.log("washing jibby!")
-        this.div.style.backgroundImage = "url('images/washing.png')"
-    }
-
-    private onEat():void {
-        console.log("jibby is eating!")
-        this.div.style.backgroundImage = "url('images/eating.gif')"
-    }
-
 
 }

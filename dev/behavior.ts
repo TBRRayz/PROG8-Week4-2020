@@ -1,6 +1,6 @@
 interface Behavior {
-    performBehavior() : void
-    onWash():void
-    onEat():void
-    onPet():void
+    performBehavior(jibby: Jibby) : void
+    onWash(jibby : Jibby) : void
+    onPet(jibby : Jibby) : void
+    onEat(jibby : Jibby) : void
 }
