@@ -30,6 +30,7 @@ Gedrag
 
 ## Opdracht UML
 - Maak vooraf een klassendiagram voor de uitwerking van de opdracht. 
+![alt text](jibby-uml.jpeg "UML")
 
 ## Opdracht Bouw de basis van Jibby
 
